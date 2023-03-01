@@ -164,6 +164,9 @@ body{
 .next:hover a{
   color: white;
 }
+.now-playing-list{
+  margin-top: 100px;
+}
 /*movie details style*/
 .movie-details{
   margin-top: 100px;
@@ -173,8 +176,6 @@ body{
   padding:50px;
   text-align: right;
   color: white;
-  /* background-color: #282727;
-  border-radius: 20px; */
 }
 .movie-details .img-section{
   height: 400px !important;

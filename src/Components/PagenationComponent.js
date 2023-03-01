@@ -1,10 +1,22 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import { useDispatch,useSelector } from 'react-redux';
+import { getPage,getPageTrending,getPagePlayingNow } from '../Redux/Actions/movieAction';
 // react paginate liberary
 import ReactPaginate from 'react-paginate';
-const PagenationComponent = ({getPage,pageCount}) => {
+const PagenationComponent = () => {
+  const [pageCount,setPageCount] = useState(0);
+
+    const dispatch = useDispatch()
+
+    const pages = useSelector((state)=>state.moviesReducer.pageCount)
+
+    useEffect(()=>{
+      setPageCount(pages)
+    },[])
+
     // handel page click
     const handlePageClickOne = (data)=>{
-        getPage(data.selected + 1)
+      dispatch(getPage(data.selected + 1))
     }
   return (
     <div>
@@ -28,10 +40,20 @@ const PagenationComponent = ({getPage,pageCount}) => {
     </div>
   )
 }
-const PagenationComponentForTrending = ({getPageTrending,pageCount}) => {
+const PagenationComponentForTrending = () => {
+  const [pageCount,setPageCount] = useState(0);
+
+    const dispatch = useDispatch()
+
+    const pages = useSelector((state)=>state.trendReducer.pageCount)
+
+    useEffect(()=>{
+      setPageCount(pages)
+    },[])
+
     // handel page click
     const handlePageClickTwo = (data)=>{
-        getPageTrending(data.selected + 1)
+        dispatch(getPageTrending(data.selected + 1))
     }
   return (
     <div>
@@ -55,10 +77,21 @@ const PagenationComponentForTrending = ({getPageTrending,pageCount}) => {
     </div>
   )
 }
-const PagenationComponentForNowPlaying = ({getPageMoviesPlayingNow,pageCount}) => {
+const PagenationComponentForNowPlaying = () => {
+
+  const [pageCount,setPageCount] = useState(0);
+
+    const dispatch = useDispatch()
+
+    const pages = useSelector((state)=>state.nowPlayingReducer.pageCount)
+
+    useEffect(()=>{
+      setPageCount(pages)
+    },[])
+
     // handel page click
     const handlePageClickThree = (data)=>{
-      getPageMoviesPlayingNow(data.selected + 1)
+      dispatch(getPagePlayingNow(data.selected + 1))
     }
   return (
     <div>

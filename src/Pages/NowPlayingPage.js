@@ -1,16 +1,16 @@
 import React from 'react'
 import { Container } from 'react-bootstrap';
-import {NowPlayingList } from '../Components/MoviesList';
 import NavBar from '../Components/NavBar';
+import NowPlayingList from '../Components/NowPlayingList';
 import {PagenationComponent} from '../Components/PagenationComponent';
 
 const NowPlayingPage = ({nowPlaying,search,getPageMoviesPlayingNow,pageCount,nowActive}) => {
   return (
     <div>
-        <NavBar search={search} nowActive="active-class"></NavBar>
+        <NavBar  nowActive="active-class"></NavBar>
         <Container fluid>
-        <NowPlayingList nowPlaying={nowPlaying}></NowPlayingList>
-        <PagenationComponent getPageMoviesPlayingNow={getPageMoviesPlayingNow} pageCount={pageCount}></PagenationComponent>
+        <NowPlayingList ></NowPlayingList>
+        <PagenationComponent></PagenationComponent>
         </Container>
     </div>
   )

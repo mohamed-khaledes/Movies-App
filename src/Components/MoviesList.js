@@ -1,8 +1,23 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Row } from 'react-bootstrap'
-import {MovieCard, TrendCard,NowPlayingCard} from './MovieCard'
+import {MovieCard} from './MovieCard'
+import { useDispatch,useSelector } from 'react-redux';
+import { getMovies } from '../Redux/Actions/movieAction';
 
-const MoviesList = ({movies}) => {
+const MoviesList = () => {
+  const [movies,setMovies] = useState([]);
+  const dispatch  = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getMovies())
+  },[])
+
+  const moviesData = useSelector((state)=>state.moviesReducer.movies)
+
+  useEffect(()=>{
+    setMovies(moviesData)
+  },[moviesData])
+  
   return (
     <div className='my-5'>
         <Row className='justify-content-center'>
@@ -15,30 +30,5 @@ const MoviesList = ({movies}) => {
     </div>
   )
 }
-const TrendList = ({trend}) => {
-  return (
-    <div className='my-5'>
-        <Row className='justify-content-center'>
-          {trend.length>=1?(trend.map((trend)=>{
-            return(
-              <TrendCard key={trend.id} trend={trend}></TrendCard>
-            )
-          })):<h2>لا يوجد افلام...</h2>}
-        </Row>
-    </div>
-  )
-}
-const NowPlayingList = ({nowPlaying}) => {
-  return (
-    <div className='my-5'>
-        <Row className='justify-content-center'>
-          {nowPlaying.length>=1?(nowPlaying.map((nowPlaying)=>{
-            return(
-              <NowPlayingCard key={nowPlaying.id} nowPlaying={nowPlaying}></NowPlayingCard>
-            )
-          })):<h2>لا يوجد افلام...</h2>}
-        </Row>
-    </div>
-  )
-}
-export  {MoviesList,TrendList,NowPlayingList}
+
+export default MoviesList

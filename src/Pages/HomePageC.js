@@ -1,18 +1,18 @@
 import React from 'react'
 import { Container } from 'react-bootstrap';
 import Landing from '../Components/Landing';
-import {MoviesList} from '../Components/MoviesList';
+import MoviesList from '../Components/MoviesList';
 import NavBar from '../Components/NavBar';
 import {PagenationComponent} from '../Components/PagenationComponent';
 
-const HomePage = ({movies,getPage,pageCount,search,homeActive}) => {
+const HomePage = ({getPage,pageCount,search,homeActive}) => {
   return (
     <div>
-      <NavBar search={search} homeActive="active-class"></NavBar>
+      <NavBar homeActive="active-class"></NavBar>
       <Landing></Landing>
       <Container fluid>
-      <MoviesList movies={movies}></MoviesList>
-      <PagenationComponent getPage={getPage} pageCount={pageCount}></PagenationComponent>
+      <MoviesList></MoviesList>
+      <PagenationComponent></PagenationComponent>
       </Container>
     </div>
   )

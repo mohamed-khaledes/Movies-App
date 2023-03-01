@@ -1,15 +1,22 @@
 import { Navbar,Container,Nav,Form } from 'react-bootstrap'
 import logo from '../imgs/logo.png'
 import { Link } from 'react-router-dom'
-const NavBar = ({search,homeActive,moviesActive,nowActive,trendActive}) => {
-  // const [active,setActive] = useState(1)
-  // toggle active class between nav links
-  // const toggleActive = (index) =>{
-  //   setActive(index)
-  // }
-  // onClick={()=>toggleActive(1)}  className={active === 1?'nav-item active-class':"nav-item"}
+import { useDispatch } from 'react-redux'
+import { getMovies,moviesSearch,getTrendingMovies,getPagePlayingNow,moviesSearchNow,moviesSearchTrend } from '../Redux/Actions/movieAction'
+
+const NavBar = ({homeActive,moviesActive,nowActive,trendActive}) => {
+  const dispatch = useDispatch()
+  // function for get a data we  search about 
   const onSearch =(searchWord)=>{
-    search(searchWord)
+    if(searchWord === ""){
+      dispatch(getMovies())
+      dispatch(getTrendingMovies())
+      dispatch(getPagePlayingNow())
+    }else{
+      dispatch(moviesSearch(searchWord))
+      dispatch(moviesSearchTrend(searchWord))
+      dispatch(moviesSearchNow(searchWord))
+    }
   }
   return (
     <div>
@@ -25,7 +32,7 @@ const NavBar = ({search,homeActive,moviesActive,nowActive,trendActive}) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Link className='link' to="/">
+            <Link className='link' to="/" >
             <nav   className={`nav-item ${homeActive}`} >الرئيسيه</nav>
             </Link>
             <Link className='link' to="/moviesPage" >
