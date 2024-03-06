@@ -20,5 +20,5 @@
     - REACT AXIOS
     - REACT BOOTSTRAP
     
-  - ## DEMO: https://mohamed-khaledes.github.io/Movies-DB/
+  - ## DEMO: https://mohamed-khaledes.github.io/Movies-App/
 
