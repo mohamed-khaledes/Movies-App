@@ -1,32 +1,30 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import { Row } from 'react-bootstrap'
 import {NowPlayingCard} from './MovieCard'
 import { useDispatch,useSelector } from 'react-redux';
-import {getPlayingNow } from '../Redux/Actions/movieAction';
-
+import { getNowPlaying } from '../Redux/Redux-toolkit/Slices/nowPlayingSlice';
 
 const NowPlayingList = () => {
-    const [nowPlaying,setNowPlaying] = useState([])
     const dispatch  = useDispatch()
-  
     useEffect(()=>{
-      dispatch(getPlayingNow())
-    },[])
+      dispatch(getNowPlaying())
+    },[dispatch])
   
-    const playingNowData = useSelector((state)=>state.nowPlayingReducer.moviesPlayingNow)
+    const {movies,loading} = useSelector((state)=>state.nowPlayingReducer)
   
-    useEffect(()=>{
-      setNowPlaying(playingNowData)
-    },[playingNowData])
-    
     return (
       <div className='now-playing-list'>
           <Row className='justify-content-center'>
-            {nowPlaying.length>=1?(nowPlaying.map((nowPlaying)=>{
-              return(
-                <NowPlayingCard key={nowPlaying.id} nowPlaying={nowPlaying}></NowPlayingCard>
-              )
-            })):<h2>لا يوجد افلام...</h2>}
+            {
+              loading===false?
+              movies?.results?.length>=1?(movies?.results?.map((nowPlaying)=>{
+                return(
+                  <NowPlayingCard key={nowPlaying.id} nowPlaying={nowPlaying}></NowPlayingCard>
+                )
+              })):<h2>لا يوجد افلام...</h2>
+              :<h2>...loading</h2>
+            }
+            
           </Row>
       </div>
     )

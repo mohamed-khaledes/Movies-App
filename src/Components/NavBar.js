@@ -2,20 +2,27 @@ import { Navbar,Container,Nav,Form } from 'react-bootstrap'
 import logo from '../imgs/logo.png'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getMovies,moviesSearch,getTrendingMovies,getPagePlayingNow,moviesSearchNow,moviesSearchTrend } from '../Redux/Actions/movieAction'
-
+import { getMovies,moviesSearch } from '../Redux/Redux-toolkit/Slices/moviesSlice'
+import { getTrendMovies,trendSearch } from '../Redux/Redux-toolkit/Slices/trendSlice'
+import { getNowPlaying,nowPlayingSearch } from '../Redux/Redux-toolkit/Slices/nowPlayingSlice'
 const NavBar = ({homeActive,moviesActive,nowActive,trendActive}) => {
   const dispatch = useDispatch()
   // function for get a data we  search about 
-  const onSearch =(searchWord)=>{
+  const getData =async()=>{
+    await dispatch(getMovies())
+      await dispatch(getTrendMovies())
+      await dispatch(getNowPlaying())
+  }
+  const getSearchData = async(searchWord)=>{
+    await dispatch(moviesSearch(searchWord))
+    await dispatch(trendSearch(searchWord))
+    await dispatch(nowPlayingSearch(searchWord))
+  }
+  const onSearch = async(searchWord)=>{
     if(searchWord === ""){
-      dispatch(getMovies())
-      dispatch(getTrendingMovies())
-      dispatch(getPagePlayingNow())
+      getData()
     }else{
-      dispatch(moviesSearch(searchWord))
-      dispatch(moviesSearchTrend(searchWord))
-      dispatch(moviesSearchNow(searchWord))
+      getSearchData(searchWord)
     }
   }
   return (

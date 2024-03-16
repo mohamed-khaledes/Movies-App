@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap';
 import NavBar from '../Components/NavBar';
 import NowPlayingList from '../Components/NowPlayingList';
-import {PagenationComponent} from '../Components/PagenationComponent';
+import {PagenationComponentForNowPlaying} from '../Components/PagenationComponent';
 
 const NowPlayingPage = ({nowPlaying,search,getPageMoviesPlayingNow,pageCount,nowActive}) => {
   return (
@@ -10,7 +10,7 @@ const NowPlayingPage = ({nowPlaying,search,getPageMoviesPlayingNow,pageCount,now
         <NavBar  nowActive="active-class"></NavBar>
         <Container fluid>
         <NowPlayingList ></NowPlayingList>
-        <PagenationComponent></PagenationComponent>
+        <PagenationComponentForNowPlaying></PagenationComponentForNowPlaying>
         </Container>
     </div>
   )

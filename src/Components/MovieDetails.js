@@ -12,13 +12,12 @@ const MovieDetails = () => {
     // get all details of movie 
   const getAllDetails = async()=>{
     const res = await axios.get(`https://api.themoviedb.org/3/movie/${newParam}?api_key=216d86a877a94fc074ae88c2c289a858&language=ar`)
-    setMovie(res.data)
-    console.log(res.data)
+    setMovie(res?.data)
   }
   // get video for watch a movie
   const getVideoOfMovie = async()=>{
     const res = await axios.get(`https://api.themoviedb.org/3/movie/${newParam}/videos?api_key=216d86a877a94fc074ae88c2c289a858&language=en-US`)
-    setTrailer(res.data.results[0].key)
+    setTrailer(res?.data?.results[0]?.key)
   }
   // use useEffect to display the data once we open the movie we want
   useEffect(()=>{
@@ -58,7 +57,7 @@ const MovieDetails = () => {
                 
             </Col>
         <Col className='btn-section' xs="12" sm="4">
-        <a href={`https://www.youtube.com/watch?v=${trailer}`} target='_blank'>
+        <a href={`https://www.youtube.com/watch?v=${trailer}`} rel='noreferrer' target='_blank'>
                 <button className='details-btn2'>الاعلان</button>
                 </a>
             </Col>

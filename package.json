@@ -1,9 +1,10 @@
 {
-  "homepage": "https://mohamed-khaled11.github.io/Movies-DB/",
-  "name": "movies-db",
+  "homepage": "https://mohamed-khaled11.github.io/Movies-App/",
+  "name": "movies-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

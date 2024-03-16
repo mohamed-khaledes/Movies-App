@@ -1,22 +1,17 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import { useDispatch,useSelector } from 'react-redux';
-import { getPage,getPageTrending,getPagePlayingNow } from '../Redux/Actions/movieAction';
+import { getPage } from '../Redux/Redux-toolkit/Slices/moviesSlice';
+import { getNowPlayingPage } from '../Redux/Redux-toolkit/Slices/nowPlayingSlice';
+import { getTrendPage } from '../Redux/Redux-toolkit/Slices/trendSlice';
 // react paginate liberary
 import ReactPaginate from 'react-paginate';
 const PagenationComponent = () => {
-  const [pageCount,setPageCount] = useState(0);
-
-    const dispatch = useDispatch()
-
-    const pages = useSelector((state)=>state.moviesReducer.pageCount)
-
-    useEffect(()=>{
-      setPageCount(pages)
-    },[])
+  const dispatch = useDispatch()
+    const {movies} = useSelector((state)=>state.moviesReducer)
 
     // handel page click
-    const handlePageClickOne = (data)=>{
-      dispatch(getPage(data.selected + 1))
+    const handlePageClickOne = async(data)=>{
+      await dispatch(getPage(data.selected + 1))
     }
   return (
     <div>
@@ -26,7 +21,7 @@ const PagenationComponent = () => {
         onPageChange={handlePageClickOne}
         marginPagesDisplayed={2}
         pageRangeDisplayed={2}
-        pageCount={pageCount}
+        pageCount={movies?.total_pages || 0}
         previousLabel="السابق"
         renderOnZeroPageCount={null}
         containerClassName={"pagination justify-content-center align-items-center p-3"}
@@ -41,19 +36,11 @@ const PagenationComponent = () => {
   )
 }
 const PagenationComponentForTrending = () => {
-  const [pageCount,setPageCount] = useState(0);
-
     const dispatch = useDispatch()
-
-    const pages = useSelector((state)=>state.trendReducer.pageCount)
-
-    useEffect(()=>{
-      setPageCount(pages)
-    },[])
-
+    const {movies} = useSelector((state)=>state.trendReducer)
     // handel page click
     const handlePageClickTwo = (data)=>{
-        dispatch(getPageTrending(data.selected + 1))
+        dispatch(getTrendPage(data.selected + 1))
     }
   return (
     <div>
@@ -63,7 +50,7 @@ const PagenationComponentForTrending = () => {
         onPageChange={handlePageClickTwo}
         marginPagesDisplayed={2}
         pageRangeDisplayed={2}
-        pageCount={pageCount}
+        pageCount={movies?.total_pages || 0}
         previousLabel="السابق"
         renderOnZeroPageCount={null}
         containerClassName={"pagination justify-content-center align-items-center p-3"}
@@ -78,20 +65,11 @@ const PagenationComponentForTrending = () => {
   )
 }
 const PagenationComponentForNowPlaying = () => {
-
-  const [pageCount,setPageCount] = useState(0);
-
     const dispatch = useDispatch()
-
-    const pages = useSelector((state)=>state.nowPlayingReducer.pageCount)
-
-    useEffect(()=>{
-      setPageCount(pages)
-    },[])
-
+    const {movies} = useSelector((state)=>state.nowPlayingReducer)
     // handel page click
-    const handlePageClickThree = (data)=>{
-      dispatch(getPagePlayingNow(data.selected + 1))
+    const handlePageClickThree = async(data)=>{
+      await dispatch(getNowPlayingPage(data.selected + 1))
     }
   return (
     <div>
@@ -101,7 +79,7 @@ const PagenationComponentForNowPlaying = () => {
         onPageChange={handlePageClickThree}
         marginPagesDisplayed={2}
         pageRangeDisplayed={2}
-        pageCount={pageCount}
+        pageCount={movies?.total_pages || 0}
         previousLabel="السابق"
         renderOnZeroPageCount={null}
         containerClassName={"pagination justify-content-center align-items-center p-3"}
