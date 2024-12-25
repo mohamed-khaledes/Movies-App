@@ -2,15 +2,20 @@ import React,{useEffect} from 'react'
 import { Row } from 'react-bootstrap'
 import {MovieCard} from './MovieCard'
 import { useDispatch,useSelector } from 'react-redux';
-import { getMovies } from '../Redux/Redux-toolkit/Slices/moviesSlice';
+import { getMovies, getPage } from '../Redux/Redux-toolkit/Slices/moviesSlice';
+import CustomPagination from './CustomPagination';
 const MoviesList = () => {
   const dispatch  = useDispatch()
+  
   useEffect(()=>{
     dispatch(getMovies())
   },[dispatch])
 
   const {movies,loading} = useSelector(state => state.moviesReducer)
-  
+   // handel page click
+   const handleClick = async(data)=>{
+    await dispatch(getPage(data.selected + 1))
+  }
   return (
     <div className='my-5'>
         <Row className='justify-content-center'>
@@ -24,6 +29,9 @@ const MoviesList = () => {
             :
             <h2>...loading</h2>
           }
+        </Row>
+        <Row>
+          <CustomPagination handleClick={handleClick} data={movies}/>
         </Row>
     </div>
   )

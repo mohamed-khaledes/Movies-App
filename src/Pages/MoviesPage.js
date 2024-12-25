@@ -2,7 +2,6 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import MoviesList from '../Components/MoviesList'
 import NavBar from '../Components/NavBar'
-import {PagenationComponent} from '../Components/PagenationComponent'
 
 const MoviesPage = ({movies,getPage,search,pageCount,moviesActive}) => {
   return (
@@ -10,7 +9,6 @@ const MoviesPage = ({movies,getPage,search,pageCount,moviesActive}) => {
       <NavBar search={search} moviesActive="active-class"></NavBar>
         <Container fluid>
         <MoviesList></MoviesList>
-        <PagenationComponent></PagenationComponent>
         </Container>
     </div>
   )

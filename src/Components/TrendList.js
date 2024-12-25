@@ -2,7 +2,8 @@ import React, {useEffect } from "react";
 import { Row } from "react-bootstrap";
 import { TrendCard } from "./MovieCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getTrendMovies } from "../Redux/Redux-toolkit/Slices/trendSlice";
+import { getTrendMovies, getTrendPage } from "../Redux/Redux-toolkit/Slices/trendSlice";
+import CustomPagination from "./CustomPagination";
 const TrendList = () => {
   const dispatch = useDispatch();
   // useEffect
@@ -12,6 +13,10 @@ const TrendList = () => {
   // get the data from the state
   const {movies,loading} = useSelector((state) => state.trendReducer);
 
+   const handleClick = async(data)=>{
+      await dispatch(getTrendPage(data.selected + 1))
+    }
+    
   return (
     <div className="my-5">
       <Row className="justify-content-center">
@@ -28,6 +33,9 @@ const TrendList = () => {
           <h2>...loading</h2>
         }
       </Row>
+      <Row>
+          <CustomPagination handleClick={handleClick} data={movies}/>
+        </Row>
     </div>
   );
 };

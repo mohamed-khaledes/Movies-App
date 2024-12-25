@@ -13,7 +13,8 @@ export const getMovies = createAsyncThunk("movies/getMovies",async(_,thunkAPI)=>
     try{
         const res = await axios.get("https://api.themoviedb.org/3/movie/popular?api_key=216d86a877a94fc074ae88c2c289a858&language=ar-EG&page=1")
         return res
-    }catch(error){
+    }
+    catch(error){
         return rejectWithValue(error)
     }
 })
@@ -80,7 +81,6 @@ const moviesSlice = createSlice({
             state.error = action.payload;
         })
     }
-    
 })
 
 export const moviesReducer =  moviesSlice.reducer

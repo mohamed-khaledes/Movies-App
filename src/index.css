@@ -126,7 +126,6 @@ body{
 /*pagenation style*/
 .page-item.active .page-link{
   background-color: var(--color-secondary) !important;
-  box-shadow: 2px 2px 0px var(--color-primary) !important;
 }
 .page-link,
 .previous,.next{
@@ -140,14 +139,12 @@ body{
   padding: 3px 5px;
   margin: 0 5px;
   transition: all 0.3s;
-  box-shadow: 2px 2px 0px var(--color-secondary);
   border: none !important;
 }
 .page-link:hover,
 .previous:hover,
 .next:hover{
   background-color: var(--color-secondary) !important;
-  box-shadow: 2px 2px 0px var(--color-primary) !important;
 }
 .previous,
 .next{
