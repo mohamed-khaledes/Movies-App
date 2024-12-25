@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import { Row } from 'react-bootstrap'
-import {MovieCard} from './MovieCard'
+import MovieCard from './MovieCard'
 import { useDispatch,useSelector } from 'react-redux';
 import { getMovies, getPage } from '../Redux/Redux-toolkit/Slices/moviesSlice';
 import CustomPagination from './CustomPagination';
@@ -23,7 +23,7 @@ const MoviesList = () => {
             loading===false?
             movies?.results?.length>=1?(movies?.results.map((movie)=>{
               return(
-                <MovieCard key={movie.id} movie={movie}></MovieCard>
+                <MovieCard key={movie.id} item={movie}/>
               )
             })):<h2>لا يوجد افلام...</h2>
             :

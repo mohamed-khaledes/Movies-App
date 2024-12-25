@@ -1,6 +1,6 @@
 import React, {useEffect } from "react";
 import { Row } from "react-bootstrap";
-import { TrendCard } from "./MovieCard";
+import MovieCard from "./MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getTrendMovies, getTrendPage } from "../Redux/Redux-toolkit/Slices/trendSlice";
 import CustomPagination from "./CustomPagination";
@@ -23,8 +23,8 @@ const TrendList = () => {
         {
           loading===false?
           movies?.results?.length >= 1 ? (
-            movies?.results?.map((trend) => {
-              return <TrendCard key={trend.id} trend={trend}></TrendCard>;
+            movies?.results?.map((movie) => {
+              return <MovieCard key={movie.id} item={movie}/>
             })
           ) : (
             <h2>لا يوجد افلام...</h2>

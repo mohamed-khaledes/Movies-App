@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Row } from "react-bootstrap";
-import { NowPlayingCard } from "./MovieCard";
+import MovieCard from "./MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getNowPlaying,
@@ -24,13 +24,8 @@ const NowPlayingList = () => {
       <Row className="justify-content-center">
         {loading === false ? (
           movies?.results?.length >= 1 ? (
-            movies?.results?.map((nowPlaying) => {
-              return (
-                <NowPlayingCard
-                  key={nowPlaying.id}
-                  nowPlaying={nowPlaying}
-                ></NowPlayingCard>
-              );
+            movies?.results?.map((movie) => {
+              return <MovieCard key={movie.id} item={movie} />;
             })
           ) : (
             <h2>لا يوجد افلام...</h2>
