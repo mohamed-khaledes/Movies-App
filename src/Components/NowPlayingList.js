@@ -7,6 +7,7 @@ import {
   getNowPlayingPage,
 } from "../Redux/Redux-toolkit/Slices/nowPlayingSlice";
 import CustomPagination from "./CustomPagination";
+import Loading from "./loading";
 
 const NowPlayingList = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const NowPlayingList = () => {
             <h2>لا يوجد افلام...</h2>
           )
         ) : (
-          <h2>...loading</h2>
+          <Loading/>
         )}
       </Row>
       <Row>

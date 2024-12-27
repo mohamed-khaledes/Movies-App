@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getTrendMovies, getTrendPage } from "../Redux/Redux-toolkit/Slices/trendSlice";
 import CustomPagination from "./CustomPagination";
+import Loading from "./loading";
 const TrendList = () => {
   const dispatch = useDispatch();
   // useEffect
@@ -30,7 +31,7 @@ const TrendList = () => {
             <h2>لا يوجد افلام...</h2>
           )
           :
-          <h2>...loading</h2>
+          <Loading/>
         }
       </Row>
       <Row>

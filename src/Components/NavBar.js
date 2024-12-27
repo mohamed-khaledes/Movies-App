@@ -25,11 +25,12 @@ const NavBar = ({homeActive,moviesActive,nowActive,trendActive}) => {
       getSearchData(searchWord)
     }
   }
+
   return (
     <div>
         <Navbar className='navbar' expand="lg" variant='dark' >
       <Container fluid>
-        <Navbar.Brand href="#">
+        <Navbar.Brand>
         <div className='logo'><img src={logo} alt="logo-img"></img></div>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -58,6 +59,7 @@ const NavBar = ({homeActive,moviesActive,nowActive,trendActive}) => {
               placeholder="ابحث"
               className="me-2"
               aria-label="Search"
+              data-testid="search-input"
               onChange={(e)=>onSearch(e.target.value)}
             />
           </Form>

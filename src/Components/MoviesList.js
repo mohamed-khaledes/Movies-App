@@ -4,7 +4,9 @@ import MovieCard from './MovieCard'
 import { useDispatch,useSelector } from 'react-redux';
 import { getMovies, getPage } from '../Redux/Redux-toolkit/Slices/moviesSlice';
 import CustomPagination from './CustomPagination';
+import Loading from './loading';
 const MoviesList = () => {
+  
   const dispatch  = useDispatch()
   
   useEffect(()=>{
@@ -18,7 +20,7 @@ const MoviesList = () => {
   }
   return (
     <div className='my-5'>
-        <Row className='justify-content-center'>
+        <Row className='justify-content-center min-vh-100'>
           {
             loading===false?
             movies?.results?.length>=1?(movies?.results.map((movie)=>{
@@ -27,7 +29,7 @@ const MoviesList = () => {
               )
             })):<h2>لا يوجد افلام...</h2>
             :
-            <h2>...loading</h2>
+            <Loading/>
           }
         </Row>
         <Row>
